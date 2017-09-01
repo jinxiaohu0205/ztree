@@ -1,0 +1,617 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="Bookmark" href="/favicon.ico" >
+<link rel="Shortcut Icon" href="/favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<!--/meta 作为公共模版分离出去-->
+
+<link rel="stylesheet" type="text/css" href="ztree/css/demo.css">
+<link rel="stylesheet" type="text/css" href="ztree/css/zTreeStyle.css">
+
+
+<title>会诊报告编辑</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style type="text/css">
+div#rMenu {
+	position:absolute; 
+	visibility:hidden; 
+	top:0; background-color: #ddd;
+	text-align: left;
+	padding: 1px;
+}
+div#rMenu ul li{
+	margin: 1px 0;
+	padding: 4px 9px;
+	cursor: pointer;
+	list-style: none outside none;
+	background-color: #fff;
+}
+.line{ border-top:none;}
+
+body{
+	padding-top: 100px;
+}
+</style>
+
+
+</head>
+<body style="padding:20px;">
+<div style="margin-left:10px;">
+    <input class="btn btn-primary radius" type="submit" value="保存">
+    <input class="btn btn-primary radius" type="submit" value="存为模板" onclick="member_add('存为模板','save_as_model.html','','510')" href="javascript:;">
+</div>
+<div class="row cl" style="padding:20px;">
+	<div class="col-sm-9 report_bg">
+        <div class="report_a4">
+            	<div class="header_title">DR检查报告</div>
+            <hr class="hr1"/>
+            
+            <div class="basic_news">
+                <div class="news_list">姓名：<span> LU YAN陆艳</span></div>
+                <div class="news_list">性别：<span> 女</span></div>
+                <div class="news_list">年龄：<span>55岁</span></div>
+                <div class="news_list">检查号：<span> 1603110011</span></div>
+                <div class="news_list">检查时间：<span>  2016-04-12 11:39</span></div>
+                <div class="news_list">报告时间：<span> </span></div>
+                <div class="news_list1">检查项目：<input type="text"><!--<span>  DR-单侧肘关节正侧位</span> --></div>
+            </div>
+            <hr class="hr2"/>
+            <div class="gjimg">
+                <div class="sub_title">典型影像</div>
+                <div class="img_bg">
+                    <img src="static/h-ui.admin/images/admin-login-bg.jpg">
+                    <img src="static/h-ui.admin/images/admin-login-bg.jpg">
+                    <img src="static/h-ui.admin/images/admin-login-bg.jpg">
+                    <img src="static/h-ui.admin/images/admin-login-bg.jpg">
+                </div>
+            </div>
+            <hr class="hr2"/>
+            <div class="suggest">
+                <div class="sub_title">影像所见：</div>
+                <div class="formControls"> 
+                    <script id="editor" type="text/plain" style="width:100%;height:200px;"></script> 
+                </div>
+            </div>
+            <hr class="hr2"/>
+            <div class="suggest">
+                <div class="sub_title">影像诊断：</div>
+                <div class="formControls"> 
+                    <script id="editor1" type="text/plain" style="width:100%;height:200px;"></script> 
+                </div>
+            </div>
+            <hr class="hr1"/>
+            <div class="basic_news">
+                <div class="news_list"> &nbsp;</div>
+                <div class="news_list">&nbsp;</div>
+                <div class="news_list" style="text-align:right;">报告日期：<span>2017-07-04</span></div>
+            </div>
+        </div>    
+    
+    </div>
+    
+   <div class="col-sm-3 model_bg">
+    	<div class="tab_change">
+        	<span class="muabn_tit1 current">公有模板</span>
+            <span class="muabn_tit2">私有模板</span>
+        </div>
+        <div class="muabn_con1">
+        	<ul id="treeDemo1" class="ztree"></ul>
+        </div>
+        <div class="muabn_con2">
+        	<button  id="addTemCate" class="btn btn-primary radius" onclick="member_add('存为模板','3.html','500','300')">新增模板分类</button>
+        	<ul id="treeDemo" class="ztree"></ul>
+        </div>
+    </div> 
+</div>
+
+ <div id="rMenu"  tree_id="">
+	<ul>
+	
+	</ul>
+</div>  
+
+
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script> 
+<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer /作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript" src="lib/webuploader/0.1.5/webuploader.min.js"></script> 
+<script type="text/javascript" src="lib/ueditor/1.4.3/ueditor.config.js"></script> 
+<script type="text/javascript" src="lib/ueditor/1.4.3/ueditor.all.min.js"> </script> 
+<script type="text/javascript" src="lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
+
+<!--z-tree-->
+<script type="text/javascript" src="ztree/js/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="ztree/js/jquery.ztree.excheck.js"></script>
+<script type="text/javascript" src="ztree/js/jquery.ztree.exedit.js"></script>
+
+<script type="text/javascript">
+
+//右边的选项卡
+$(function(){
+	$(".muabn_tit1").click(function(){
+      	$(this).addClass("current").siblings().removeClass("current");
+		$(".muabn_con1").show();
+		$(".muabn_con2").hide();
+      })
+	$(".muabn_tit2").click(function(){
+      	$(this).addClass("current").siblings().removeClass("current");
+		$(".muabn_con2").show();
+		$(".muabn_con1").hide();
+      })
+})
+//第一个树结构的内容
+	// ztree插件，配置
+	var setting1 = {
+			view: {
+				showLine: false,
+				//用户 自动以dom控件
+				addDiyDom: addDiyDom
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			}
+	};
+		var zNodes1 =[
+			{ id:1, pId:0, name:"pNode 1", open:true},
+			{ id:11, pId:1, name:"pNode 11"},
+			{ id:111, pId:11, name:"leaf node 111"},
+			{ id:112, pId:11, name:"leaf node 112"},
+			{ id:113, pId:11, name:"leaf node 113"},
+			{ id:114, pId:11, name:"leaf node 114"},
+			{ id:12, pId:1, name:"pNode 12"},
+			{ id:121, pId:12, name:"leaf node 121"},
+			{ id:122, pId:12, name:"leaf node 122"},
+			{ id:123, pId:12, name:"leaf node 123"},
+			{ id:124, pId:12, name:"leaf node 124"},
+			{ id:13, pId:1, name:"pNode 13 - no child", isParent:true},
+			{ id:2, pId:0, name:"pNode 2"},
+			{ id:21, pId:2, name:"pNode 21", open:true},
+			{ id:211, pId:21, name:"leaf node 211"},
+			{ id:212, pId:21, name:"leaf node 212"},
+			{ id:213, pId:21, name:"leaf node 213"},
+			{ id:214, pId:21, name:"leaf node 214"},
+			{ id:22, pId:2, name:"pNode 22"},
+			{ id:221, pId:22, name:"leaf node 221"},
+			{ id:222, pId:22, name:"leaf node 222"},
+			{ id:223, pId:22, name:"leaf node 223"},
+			{ id:224, pId:22, name:"leaf node 224"},
+			{ id:23, pId:2, name:"pNode 23"},
+			{ id:231, pId:23, name:"leaf node 231"},
+			{ id:232, pId:23, name:"leaf node 232"},
+			{ id:233, pId:23, name:"leaf node 233"},
+			{ id:234, pId:23, name:"leaf node 234"},
+			{ id:3, pId:0, name:"pNode 3 - no child", isParent:true}
+		];
+		
+//		模板初始化
+		$(document).ready(function(){
+			$.fn.zTree.init($("#treeDemo1"), setting1, zNodes1);
+		});
+		
+//	第二个树结构的内容	加了一个右点击事件
+	var setting = {
+		view: {
+			dblClickExpand: false,
+			// 
+			addDiyDom: addDiyDom
+		},
+		check: {
+			enable: true
+		},
+		callback: {
+//			右键点击事件
+			onRightClick: right
+		}
+	};
+
+	var zNodes =[
+		//	open默认就是false
+		{id:2,pid:0, name:"Right-click 2", open:true,
+			children:[
+				   {id:21, name:"Leaf Node 2-1"},
+				   {id:22, name:"Leaf Node 2-2"},
+				   {id:23, name:"Leaf Node 2-3"},
+				   {id:24, name:"Leaf Node 2-4"}
+			]},
+		{id:3,pid:0, name:"Right-click 3", open:true,
+			children:[
+				   {id:31, name:"Leaf Node 3-1"},
+				   {id:32, name:"Leaf Node 3-2"},
+				   {id:33, name:"Leaf Node 3-3"},
+				   {id:34, name:"Leaf Node 3-4"}
+			]}
+	];
+	var zTree, rMenu;
+	$(document).ready(function(){
+		$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+//		zTree = $.fn.zTree.getZTreeObj("treeDemo");
+		rMenu = $("#rMenu");
+	});
+	
+	
+		// 点击节点模板事件--显示其内容
+	function addDiyDom(treeId, treeNode) {
+		console.log(treeNode);
+//		console.log(treeId);
+		var aObj = $("#" + treeNode.tId + "_a");
+//		var aObj=$(".level2")
+//		if(treeNode.type == 2 && treeNode.hReportEvidences != '' && treeNode.hReportConclusion != '')
+//		{
+//		    aObj.attr('onclick','showTree('+treeNode.id+',"'+treeNode.name+'","'+treeNode.hReportEvidences+'","'+treeNode.hReportConclusion+'")');
+//		      
+//	    }else
+//	    {
+	        aObj.attr('onclick','showTree('+treeNode.id+')');
+//	    }
+	};
+
+
+	// /* 显示模板内容 */
+	function showTree(id,name,hReportEvidences,hReportConclusion){
+//	alert(id);
+		if(id>20){
+//			var url = "{:U('Expert/templateShow',array(1=>1))}";
+//			var url = url + '/id/'+id;
+			var url="2.html";
+			
+			layer.ready(function(){ 		 
+				var title = "选择报告模板的插入方式";			
+				layer.open({
+				    type: 2,
+				    title: title,
+				    fix: false,
+				    shadeClose: true,
+					maxmin: true,
+					area: ['900px','500px'],
+					content: "2.html",
+				});	
+			});
+		}
+	}
+
+	// // 右键点击事件
+	function right(event,treeId,treeNode){
+//		alert(treeNode.id);
+		var tree_id = treeNode.id;
+		var uid = treeNode.uid;
+		$("#rMenu").attr('tree_id',tree_id);
+
+//		if(uid != 0){
+			if(treeNode.pid== 0){
+//				if($(this).id=="treeDemo_1_a"){
+	$("#rMenu ul").html("<li id='m_edit' onclick='editTreeNode();'>修改模板分类</li><li id='m_del' onclick='delTreeNode();'>删除模板分类</li><li id='r_add' onclick='addReport();'>新增报告模板</li>");
+				
+			}else{
+//				alert(1);
+				$("#rMenu ul").html("<li id='eidt_report' onclick='editReport();'> 修改模板</li><li id='del_report' onclick='delReport();'> 删除模板</li>");
+			}
+//		}
+		showRMenu(event);
+	}
+
+	// 计算鼠标位置，右键弹出框在鼠标位置显示
+	function showRMenu(event) {
+		var x = event.clientX;
+	    var y = event.clientY;
+	    console.log(x);
+		console.log(y);
+		rMenu.css({"top":y+"px", "left":x +"px", "visibility":"visible"});
+		$("body").bind("mousedown", onBodyMouseDown);
+	}
+	
+//	这是个取消绑定事件  暂时认为 没什么用取消了
+//	function hideRMenu() {
+//		if (rMenu) rMenu.css({"visibility": "hidden"});
+//		$("body").unbind("mousedown", onBodyMouseDown);
+//	}
+//委派事件
+	function onBodyMouseDown(event){
+		if (!(event.target.id == "rMenu" || $(event.target).parents("#rMenu").length>0)) {
+			rMenu.css({"visibility" : "hidden"});
+		}
+	}
+	
+/* 新增报告模板  就是文件夹里边的小的*/
+	function addReport(){
+		var tree_id = $("#rMenu").attr('tree_id');
+		var url = "{:U('Expert/addReportTem',array(1=>1))}";
+		var url = url + '/tree_id/' + tree_id;
+		layer.ready(function(){ 		 
+			var title="新增报告模板";			
+			layer.open({
+			    type: 2,
+			    title: title,
+			    fix: false,
+			    shadeClose: true,
+				maxmin: true,
+				area: ['500px', '300px'],
+				content: "3.html",
+			});	
+		});
+	}
+	
+	
+	/* 修改报告模板 */
+	function editReport(){
+		var tree_id = $("#rMenu").attr('tree_id');
+		var url = "{:U('Expert/editReportTem',array(1=>1))}";
+		var url = url + '/tree_id/' + tree_id;
+		layer.ready(function(){ 		 
+			var title="修改报告模板";			
+			layer.open({
+			    type: 2,
+			    title: title,
+			    fix: false,
+			    shadeClose: true,
+				maxmin: true,
+				area: ['900px', '500px'],
+				content: "22.html",
+			});	
+		});
+	}
+	
+	//更新个人模板
+    function updateReport(){
+    	$.post("{:U('Expert/updateUserReport')}",{1:1},function(e){
+			zTree1 = $.fn.zTree.init($("#treeDemo1"), setting1, e);
+    	},'json')
+    }
+
+	/* 删除报告模板 */
+	function delReport(){
+		
+		layer.confirm("您确定要删除此模板吗？",function(){
+			var tree_id = $("#rMenu").attr('tree_id');
+			$.post("{:U('Expert/delRport')}",{tree_id:tree_id},function(e){
+//				if(e.code == 1){
+					layer.msg(e.msg,{icon:1});
+					updateReport();
+//				}else{
+					layer.msg(e.msg,{icon:2});
+//				}
+			},'json')
+		})
+	}
+	
+/* 修改模板分类 */
+	function editTreeNode(){
+//		var tree_id = $("#rMenu").attr('tree_id');
+//		var url = "{:U('Expert/addParentCate',array('1'=>1))}";
+//		var url = url + '/tree_id/' +tree_id;
+		layer.ready(function(){ 		 
+			var title="编辑模板分类";			
+			layer.open({
+			    type: 2,
+			    title: title,
+			    fix: false,
+			    shadeClose: true,
+				maxmin: true,
+				area: ['500px', '300px'],
+				content:"3.html",
+			});	
+		});	
+	}
+/*新增模板分类模板*/
+	function member_add(title,url,w,h){
+		layer_show(title,url,w,h);
+	}
+	
+/* 删除报告分类 */
+	function delTreeNode(){
+		var tree_id = $("#rMenu").attr('tree_id');
+		
+		layer.confirm("您确定要删除此模板分类吗？",function(){
+			$.post("{:U('Expert/delCate')}",{tree_id:tree_id},function(e){
+				if(e.code == 1){
+					layer.msg(e.msg,{icon:1});
+					updateReport();
+				}else{
+					layer.msg(e.msg,{icon:2});
+				}
+			},'json')
+		})
+	}
+	
+
+	
+//	var addCount = 1;
+//	function addTreeNode() {
+//		hideRMenu();
+//		var newNode = { name:"newNode " + (addCount++)};
+//		if (zTree.getSelectedNodes()[0]) {
+//			newNode.checked = zTree.getSelectedNodes()[0].checked;
+//			zTree.addNodes(zTree.getSelectedNodes()[0], newNode);
+//		} else {
+//			zTree.addNodes(null, newNode);
+//		}
+//	}
+//	function removeTreeNode() {
+//		hideRMenu();
+//		var nodes = zTree.getSelectedNodes();
+//		if (nodes && nodes.length>0) {
+//			if (nodes[0].children && nodes[0].children.length > 0) {
+//				var msg = "If you delete this node will be deleted along with sub-nodes. \n\nPlease confirm!";
+//				if (confirm(msg)==true){
+//					zTree.removeNode(nodes[0]);
+//				}
+//			} else {
+//				zTree.removeNode(nodes[0]);
+//			}
+//		}
+//	}
+//	function checkTreeNode(checked) {
+//		var nodes = zTree.getSelectedNodes();
+//		if (nodes && nodes.length>0) {
+//			zTree.checkNode(nodes[0], checked, true);
+//		}
+//		hideRMenu();
+//	}
+//	function resetTree() {
+//		hideRMenu();
+//		$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+//	}
+//	function resetTree() {
+//		hideRMenu();
+//		$.fn.zTree.init($("#treeDemo1"), setting1, zNodes1);
+//	}
+
+	
+
+
+</script>
+
+<script type="text/javascript">
+$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+});
+</script> 
+<script type="text/javascript">
+$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	$list = $("#fileList"),
+	$btn = $("#btn-star"),
+	state = "pending",
+	uploader;
+
+	var uploader = WebUploader.create({
+		auto: true,
+		swf: 'lib/webuploader/0.1.5/Uploader.swf',
+	
+		// 文件接收服务端。
+		server: 'fileupload.php',
+	
+		// 选择文件的按钮。可选。
+		// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+		pick: '#filePicker',
+	
+		// 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+		resize: false,
+		// 只允许选择图片文件。
+		accept: {
+			title: 'Images',
+			extensions: 'gif,jpg,jpeg,bmp,png',
+			mimeTypes: 'image/*'
+		}
+	});
+	uploader.on( 'fileQueued', function( file ) {
+		var $li = $(
+			'<div id="' + file.id + '" class="item">' +
+				'<div class="pic-box"><img></div>'+
+				'<div class="info">' + file.name + '</div>' +
+				'<p class="state">等待上传...</p>'+
+			'</div>'
+		),
+		$img = $li.find('img');
+		$list.append( $li );
+	
+		// 创建缩略图
+		// 如果为非图片文件，可以不用调用此方法。
+		// thumbnailWidth x thumbnailHeight 为 100 x 100
+		uploader.makeThumb( file, function( error, src ) {
+			if ( error ) {
+				$img.replaceWith('<span>不能预览</span>');
+				return;
+			}
+	
+			$img.attr( 'src', src );
+		}, thumbnailWidth, thumbnailHeight );
+	});
+	// 文件上传过程中创建进度条实时显示。
+	uploader.on( 'uploadProgress', function( file, percentage ) {
+		var $li = $( '#'+file.id ),
+			$percent = $li.find('.progress-box .sr-only');
+	
+		// 避免重复创建
+		if ( !$percent.length ) {
+			$percent = $('<div class="progress-box"><span class="progress-bar radius"><span class="sr-only" style="width:0%"></span></span></div>').appendTo( $li ).find('.sr-only');
+		}
+		$li.find(".state").text("上传中");
+		$percent.css( 'width', percentage * 100 + '%' );
+	});
+	
+	// 文件上传成功，给item添加成功class, 用样式标记上传成功。
+	uploader.on( 'uploadSuccess', function( file ) {
+		$( '#'+file.id ).addClass('upload-state-success').find(".state").text("已上传");
+	});
+	
+	// 文件上传失败，显示上传出错。
+	uploader.on( 'uploadError', function( file ) {
+		$( '#'+file.id ).addClass('upload-state-error').find(".state").text("上传出错");
+	});
+	
+	// 完成上传完了，成功或者失败，先删除进度条。
+	uploader.on( 'uploadComplete', function( file ) {
+		$( '#'+file.id ).find('.progress-box').fadeOut();
+	});
+	uploader.on('all', function (type) {
+        if (type === 'startUpload') {
+            state = 'uploading';
+        } else if (type === 'stopUpload') {
+            state = 'paused';
+        } else if (type === 'uploadFinished') {
+            state = 'done';
+        }
+
+        if (state === 'uploading') {
+            $btn.text('暂停上传');
+        } else {
+            $btn.text('开始上传');
+        }
+    });
+
+    $btn.on('click', function () {
+        if (state === 'uploading') {
+            uploader.stop();
+        } else {
+            uploader.upload();
+        }
+    });
+	
+	var ue = UE.getEditor('editor');
+	var ue = UE.getEditor('editor1');
+	
+});
+</script>
+
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

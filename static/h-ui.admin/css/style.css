@@ -1,0 +1,72 @@
+@charset "utf-8";
+/*影像会诊切换*/
+.tabtit{ overflow:hidden; }
+.tabtit span{ width:120px; height:40px; text-align:center; line-height:40px; z-index:1; display:block; float:left; cursor:pointer; }
+.tab_contebt{ border-top:#ddd solid 1px; z-index:3;}
+.current{ background-color:#fff; z-index:999;  bottom:0; border-bottom:#148cf1 solid 2px; color:#148cf1;}
+.content2{ display:none;}
+
+
+/*提现-弹框*/
+.bnak{ font-size:18px; margin:0 10px; color:#000;}
+.money{ font-size:24px; margin:0 10px; color:#f40;}
+/*提现-详情-弹框*/
+.popup,.popup1,.popup2{ width:100%; height:100%; background-color:rgba(0,0,0,0.4); position:fixed; top:0; left:0; display:none;}
+.withdraw_bg{ width:300px; background-color:#fff; font-size: 14px; color: #333; box-shadow: 1px 1px 50px rgba(0, 0, 0, 0.3); border-radius:2px; position:absolute; top:50%; left:50%; margin-left:-150px; margin-top:-140px;}
+.popup_tit{background-color: #f8f8f8; border-bottom: 1px solid #eee; height: 42px; line-height: 42px; overflow: hidden; padding: 0 20px;}
+.withdraw_close{ float:right; font-size:16px; cursor:pointer;}
+.withdraw_money{ text-align:center; border-bottom:#ddd solid 1px; padding:10px;}
+.withdraw_money span{ font-size:60px;}
+.withdraw_desc{ padding:10px 20px; line-height:30px; text-align:left;}
+.withdraw_reason{ line-height:30px; text-align:justify; }
+.withdraw_reason span{ color:#f40;}
+
+
+/*银行卡详情*/
+.avatar.size-XL, .avatar.size-XL i { height: 70px; width: 70px; text-align:center; line-height:68px; color:#fff; font-size:70px;}
+
+
+/*发起会诊*/
+.form-horizontal .select_ex label{ text-align:left; font-size:16px; padding-left:66px;}
+.expert_name{ font-size:18px; margin-right:10px;}
+.select_expert .radio-box{ width:49%; margin-bottom:20px;}
+.select_expert{ padding-left:70px;}
+
+/*报告-单页*/
+.report_a4{ width:792px; padding:40px; margin:0 auto; background-color:#fff; box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); overflow:hidden;}
+/*.header { height:60px;}
+.logo_bg{ width:33.3333%; height:60px; vertical-align:middle;}
+.logo_bg img{ height:50px;}
+*/
+.hr1{ margin:10px 0; border-top:#000 solid 2px;}
+.hr2{ margin:10px 0;}
+.header_title{ font-size:36px; font-family: 黑体, SimHei; text-align:center; margin-bottom:10px;}
+.basic_news{ width:100%; overflow:hidden; font-size:14px; line-height:30px; text-align:left;}
+.basic_news span{ line-height:30px;}
+.news_list{ width:33.33%; float:left;}
+.news_list1{ width:100%;}
+.news_list1 input{ border:#ddd solid 1px; width:88%; height:30px; line-height:30px; padding:0 10px;}
+.sub_title{ font-size:16px; margin-bottom:10px;}
+.img_bg{ height:165px; text-align:center;}
+.img_bg img{ width:165px; height:165px; margin-right:10px;}
+.suggest_con{ width:710px; min-height:170px; margin:0 auto; padding:10px;}
+
+/*阅片*/
+.button_link{ position:fixed; top:200px; right:0;}
+.anniu{display: block; padding:10px; width:20px; text-align:center; font-size:14px; font-weight: bold; color:#fff;  margin-bottom: 10px; text-decoration: none;}
+.share_btn{ background-color:#5a98de;}
+.medhis_btn{background-color:#dd514c;}
+.anniu:hover,.anniu:focus{ color:#fff;}
+
+/*阅片写报告*/
+.report_bg{ background-color:#f0f0f0; border:#ddd solid 1px; padding:20px 0;}
+.model_bg{ padding:20px 20px 20px 40px;}
+
+/*模板切换*/
+.tab_change{ width:100%; height:40px; margin-bottom:10px;}
+.tab_change span{ width:50%; height:40px; line-height:40px; text-align:center; font-size:16px; cursor:pointer; float:left;}
+.current{ background-color:}
+.muabn_con2{ display:none;}
+
+
+.form-horizontal .row .form-label { text-align:right;}
