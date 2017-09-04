@@ -74,7 +74,7 @@ body{
                 <div class="news_list">检查号：<span> 1603110011</span></div>
                 <div class="news_list">检查时间：<span>  2016-04-12 11:39</span></div>
                 <div class="news_list">报告时间：<span> </span></div>
-                <div class="news_list1">检查项目：<input type="text"><!--<span>  DR-单侧肘关节正侧位</span> --></div>
+                <div class="news_list1">检查项目：<input type="text" class="part"><!--<span>  DR-单侧肘关节正侧位</span> --></div> 
             </div>
             <hr class="hr2"/>
             <div class="gjimg">
@@ -262,7 +262,7 @@ $(function(){
 	
 		// 点击节点模板事件--显示其内容
 	function addDiyDom(treeId, treeNode) {
-		console.log(treeNode);
+//		console.log(treeNode);
 //		console.log(treeId);
 		var aObj = $("#" + treeNode.tId + "_a");
 //		var aObj=$(".level2")
@@ -280,11 +280,10 @@ $(function(){
 	// /* 显示模板内容 */
 	function showTree(id,name,hReportEvidences,hReportConclusion){
 //	alert(id);
-		if(id>20){
+		if(id>21){
 //			var url = "{:U('Expert/templateShow',array(1=>1))}";
 //			var url = url + '/id/'+id;
 			var url="2.html";
-			
 			layer.ready(function(){ 		 
 				var title = "选择报告模板的插入方式";			
 				layer.open({
@@ -443,6 +442,28 @@ $(function(){
 		})
 	}
 	
+// 定义两个编辑器对象
+	var editor = UE.getEditor('editor');
+	var editor1 = UE.getEditor('editor1');
+	console.log(editor);
+//追加报告
+	function appendReport(opinion,impression,proposal){
+		console.log(opinion)
+		$('.part').val(opinion);
+		var view1 = "" + editor.getContent()+ "<p style='text-indent: 2em;'>"+impression+"</p>";
+        var advise1 = "" + editor1.getContent() + "<p style='text-indent: 2em;'>"+proposal+"</p>";
+        editor.setContent(view1);
+        editor1.setContent(advise1);
+	}	
+	
+//覆盖报告
+	function AllReport(opinion,impression,proposal){
+		$('.part').val(opinion);
+		var view1 = "<p style='text-indent: 2em;'>"+impression+"</p>";
+        var advise1 = "<p style='text-indent: 2em;'>"+proposal+"</p>";
+        editor.setContent(view1);
+        editor1.setContent(advise1);
+	}	
 
 	
 //	var addCount = 1;
